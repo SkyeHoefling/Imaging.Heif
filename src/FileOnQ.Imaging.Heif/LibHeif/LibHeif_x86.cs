@@ -43,6 +43,9 @@ namespace FileOnQ.Imaging.Heif
 			internal static extern Error heif_decode_image(ImageHandle* inputImage, Image** outputImage, ColorSpace colorSpace, Chroma chroma, IntPtr decodingOptions);
 
 			[DllImport(DllName, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+			internal static extern Error heif_image_scale_image(Image* inputImage, Image** outputImage, int width, int height, IntPtr options);
+
+			[DllImport(DllName, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 			internal static extern void heif_decoding_options_free(IntPtr decodingOptions);
 
 			[DllImport(DllName, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]

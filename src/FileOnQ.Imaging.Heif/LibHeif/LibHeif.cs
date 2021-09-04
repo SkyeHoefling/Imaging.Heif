@@ -151,6 +151,19 @@ namespace FileOnQ.Imaging.Heif
 			}
 		}
 
+		internal static Error ScaleImage(Image* inputImage, Image** outputImage, int width, int height, IntPtr options)
+		{
+			switch (RuntimeInformation.ProcessArchitecture)
+			{
+				case Architecture.X64:
+					return x64.heif_image_scale_image(inputImage, outputImage, width, height, options);
+				case Architecture.X86:
+					return x86.heif_image_scale_image(inputImage, outputImage, width, height, options);
+				default:
+					throw new NotSupportedException($"Current platform ({RuntimeInformation.ProcessArchitecture}) is not supported");
+			}
+		}
+
 		internal static void FreeDecodingOptions(IntPtr decodingOptions)
 		{
 			switch (RuntimeInformation.ProcessArchitecture)
